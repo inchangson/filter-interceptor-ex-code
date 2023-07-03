@@ -2,6 +2,7 @@ package com.example.demo.web.member;
 
 import com.example.demo.domain.member.Member;
 import com.example.demo.domain.member.MemberRepository;
+import com.example.demo.web.Constant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping(Constant.baseUrl + "/members")
 public class MemberController {
     private final MemberRepository memberRepository;
 

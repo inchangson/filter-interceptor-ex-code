@@ -2,6 +2,7 @@ package com.example.demo.web.login;
 
 import com.example.demo.domain.login.LoginService;
 import com.example.demo.domain.member.Member;
+import com.example.demo.web.Constant;
 import com.example.demo.web.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping(Constant.baseUrl)
 public class LoginController {
     private final LoginService loginService;
 
