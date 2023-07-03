@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Slf4j
 @Controller
 public class HomeController {
-        @GetMapping("/")
+    @GetMapping("/")
     public String homeLoginSpring(
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member, Model model) {
         //login
@@ -20,6 +20,10 @@ public class HomeController {
 
         model.addAttribute("member", member);
         return "loginHome";
+    }
+    @GetMapping("/info")
+    public String homeLoginSpring() {
+        return "info";
     }
 
 }
