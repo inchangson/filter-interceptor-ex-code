@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.web.filter.CsrfFilter;
 import com.example.demo.web.filter.LoggingFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -11,12 +12,23 @@ import javax.servlet.Filter;
 public class FilterConfig {
     @Bean
     public FilterRegistrationBean loggingFilter() {
-        FilterRegistrationBean<Filter> logFilterBean = new FilterRegistrationBean<>();
+        FilterRegistrationBean<Filter> logRegBean = new FilterRegistrationBean<>();
 
-        logFilterBean.setFilter(new LoggingFilter());
-        logFilterBean.setOrder(1);
-        logFilterBean.addUrlPatterns("/*");
+        logRegBean.setFilter(new LoggingFilter());
+        logRegBean.setOrder(1);
+        logRegBean.addUrlPatterns("/*");
 
-        return logFilterBean;
+        return logRegBean;
+    }
+
+    @Bean
+    public FilterRegistrationBean csrfFilter() {
+        FilterRegistrationBean<Filter> csrfRegBean = new FilterRegistrationBean<>();
+
+        csrfRegBean.setFilter(new CsrfFilter());
+        csrfRegBean.setOrder(3);
+        csrfRegBean.addUrlPatterns("/*");
+
+        return csrfRegBean;
     }
 }

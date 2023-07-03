@@ -2,6 +2,7 @@ package com.example.demo.web.item;
 
 import com.example.demo.domain.item.Item;
 import com.example.demo.domain.item.ItemRepository;
+import com.example.demo.web.Constant;
 import com.example.demo.web.item.form.ItemSaveForm;
 import com.example.demo.web.item.form.ItemUpdateForm;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/items")
+@RequestMapping(Constant.baseUrl + "/items")
 @RequiredArgsConstructor
 public class ItemController {
 
@@ -72,7 +73,7 @@ public class ItemController {
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/items/{itemId}";
+        return "redirect:/space/items/{itemId}";
     }
 
     @GetMapping("/{itemId}/edit")
@@ -104,7 +105,7 @@ public class ItemController {
         itemParam.setQuantity(form.getQuantity());
 
         itemRepository.update(itemId, itemParam);
-        return "redirect:/items/{itemId}";
+        return "redirect:/space/items/{itemId}";
     }
 
 }

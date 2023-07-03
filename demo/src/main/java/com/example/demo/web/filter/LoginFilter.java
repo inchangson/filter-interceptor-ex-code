@@ -28,7 +28,7 @@ public class LoginFilter implements Filter {
 
     private final ItemRepository itemRepository;
 
-    private static final String[] whitelist = {"/", "/members/add", "/login", "/logout", "/css/*"};
+    private static final String[] whitelist = {"/", "/space", "/space/members/add", "/space/login", "/space/logout", "/space/info", "/css/*"};
 
     private void testUsingSpringBean() {
         // spring bean 활용 가능 테스트용 코드
