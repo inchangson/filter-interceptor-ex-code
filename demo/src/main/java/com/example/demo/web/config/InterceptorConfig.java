@@ -1,5 +1,6 @@
 package com.example.demo.web.config;
 
+import com.example.demo.web.interceptor.TimeMeasureInterceptor;
 import com.example.demo.web.interceptor.LoggingInterceptor;
 import com.example.demo.web.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,11 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(2)
                 .addPathPatterns("/**")
-                .excludePathPatterns(whitelist);
+                .excludePathPatterns("/", "/members/add", "/login", "/logout",
+                        "/css/**", "/*.ico", "/error");
+
+        registry.addInterceptor(new TimeMeasureInterceptor())
+                .order(3)
+                .addPathPatterns("/**");
     }
 }
