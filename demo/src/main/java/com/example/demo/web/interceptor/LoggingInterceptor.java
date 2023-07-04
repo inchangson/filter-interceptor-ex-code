@@ -19,23 +19,23 @@ public class LoggingInterceptor implements HandlerInterceptor {
 
         request.setAttribute(LOG_ID, uuid);
 
-        log.info("LoggingInterceptor.preHandle(): REQUEST [{}][{}][{}]", uuid, requestURI, handler);
+        log.info("preHandle(): REQUEST [{}][{}][{}]", uuid, requestURI, handler);
 
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("LoggingInterceptor.postHandle [{}]", modelAndView);
+        log.info("postHandle [{}]", modelAndView);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String requestURI = request.getRequestURI();
         String uuid = (String) request.getAttribute(LOG_ID);
-        log.info("LoggingInterceptor.afterCompletion(): RESPONSE [{}][{}]", uuid, requestURI);
+        log.info("afterCompletion(): RESPONSE [{}][{}]", uuid, requestURI);
         if (ex != null) {
-            log.error("LoggingInterceptor.afterCompletion(): error occurs !!!", ex);
+            log.error("afterCompletion(): error occurs !!!", ex);
         }
     }
 }

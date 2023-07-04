@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Controller
 public class HomeController {
     @GetMapping("/")
+    public String home() {
+        return "redirect:" + Constant.baseUrl;
+    }
+
+    @GetMapping(Constant.baseUrl)
     public String homeLoginSpring(
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member, Model model) {
         //login
@@ -21,7 +26,7 @@ public class HomeController {
         model.addAttribute("member", member);
         return "loginHome";
     }
-    @GetMapping("/info")
+    @GetMapping(Constant.baseUrl + "/info")
     public String homeLoginSpring() {
         return "info";
     }
