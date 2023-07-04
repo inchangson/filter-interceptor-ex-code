@@ -22,8 +22,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(2)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/", "/members/add", "/login", "/logout",
-                        "/css/**", "/*.ico", "/error");
+                .excludePathPatterns(whitelist);
 
         registry.addInterceptor(new TimeMeasureInterceptor())
                 .order(3)
