@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
+
+    private static final String[] whitelist = {"/", "/space", "/space/members/add", "/space/login", "/space/logout", "/space/info", "/css/*", "/*.ico", "/error"};
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoggingInterceptor())
@@ -18,8 +21,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(2)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/", "/members/add", "/login", "/logout",
-                        "/css/**", "/*.ico", "/error");
-
+                .excludePathPatterns(whitelist);
     }
 }

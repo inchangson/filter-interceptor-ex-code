@@ -49,17 +49,17 @@ public class LoginFilter implements Filter {
             testUsingSpringBean();
 
             if (isLoginCheckPath(requestURI)) {
-                log.info("인증 체크 로직 실행 {}", requestURI);
+                log.info("LoginFilter.doFilter(): 인증 체크 로직 실행 {}", requestURI);
                 HttpSession session = httpRequest.getSession(false);
 
                 if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
-                    log.info("미인증 사용자 요청 {}", requestURI);
+                    log.info("LoginFilter.doFilter(): 미인증 사용자 요청 {}", requestURI);
                     // 로그인으로 리다이렉트
                     // httpResponse.sendRedirect("/login"); 로
                     // 로그인페이지 가도 되나,
                     // 상품 조회 중 미인증으로 인한 로그인 페이지 이동 시,
                     // 로그인 이후에 다시 원래 페이지로 이동키 위해 ?redirectURL= 추가
-                    httpResponse.sendRedirect("/login?redirectURL=" + requestURI);
+                    httpResponse.sendRedirect("/space/login?redirectURL=" + requestURI);
                     return;
                 }
             }

@@ -20,7 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
             log.info("LoginInterceptor.preHandle(): unauthenticated access [{}]", requestURI);
             // 로그인으로 redirect
-            response.sendRedirect("/login?redirectURL=" + requestURI);
+            response.sendRedirect("/space/login?redirectURL=" + requestURI);
         }
 
         log.info("LoginInterceptor.preHandle() END: [{}]", requestURI);
