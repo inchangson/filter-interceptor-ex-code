@@ -28,8 +28,6 @@ public class CsrfFilter implements Filter {
             // GET 요청 아닐 시 referrer 검증
             if (!HttpMethod.GET.equals(method)) {
                 String prevUrl = httpRequest.getHeader("REFERER");
-                log.info("doFilter(): REQUEST [{}][{}]", requestURI, method);
-                log.info("doFilter(): prevUrl [{}]", prevUrl);
 
                 if ((prevUrl == null) || (!prevUrl.matches(Constant.csrfRegex))) {
                     log.info("doFilter(): connection failed" + prevUrl);
