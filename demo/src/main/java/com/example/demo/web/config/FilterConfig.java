@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.web.config;
 
 import com.example.demo.web.filter.CsrfFilter;
 import com.example.demo.web.filter.LoggingFilter;
@@ -11,22 +11,11 @@ import javax.servlet.Filter;
 @Configuration
 public class FilterConfig {
     @Bean
-    public FilterRegistrationBean loggingFilter() {
-        FilterRegistrationBean<Filter> logRegBean = new FilterRegistrationBean<>();
-
-        logRegBean.setFilter(new LoggingFilter());
-        logRegBean.setOrder(1);
-        logRegBean.addUrlPatterns("/*");
-
-        return logRegBean;
-    }
-
-    @Bean
     public FilterRegistrationBean csrfFilter() {
         FilterRegistrationBean<Filter> csrfRegBean = new FilterRegistrationBean<>();
 
         csrfRegBean.setFilter(new CsrfFilter());
-        csrfRegBean.setOrder(3);
+        csrfRegBean.setOrder(1);
         csrfRegBean.addUrlPatterns("/*");
 
         return csrfRegBean;
