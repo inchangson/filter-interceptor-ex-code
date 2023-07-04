@@ -23,29 +23,27 @@ public class CsrfFilter implements Filter {
         HttpMethod method = HttpMethod.resolve(httpRequest.getMethod());
 
         try {
-            log.info("CsrfFilter.doFilter() START: REQUEST [{}][{}]", requestURI, method);
-
-
+            log.info("doFilter() START: REQUEST [{}][{}]", requestURI, method);
 
             // GET 요청 아닐 시 referrer 검증
             if (!HttpMethod.GET.equals(method)) {
                 String prevUrl = httpRequest.getHeader("REFERER");
-                log.info("CsrfFilter.doFilter(): REQUEST [{}][{}]", requestURI, method);
-                log.info("CsrfFilter.doFilter(): prevUrl [{}]", prevUrl);
+                log.info("doFilter(): REQUEST [{}][{}]", requestURI, method);
+                log.info("doFilter(): prevUrl [{}]", prevUrl);
 
                 if ((prevUrl == null) || (!prevUrl.matches(Constant.csrfRegex))) {
-                    log.info("CsrfFilter.doFilter(): connection failed" + prevUrl);
+                    log.info("doFilter(): connection failed" + prevUrl);
                     httpResponse.sendError(400);
                     return;
                 }
             }
 
-            log.info("CsrfFilter.doFilter(): csrf check passed");
+            log.info("doFilter(): csrf check passed");
             chain.doFilter(request, response);
         } catch (Exception e) {
             throw e;
         } finally {
-            log.info("CsrfFilter.doFilter() END: RESPONSE [{}][{}]", requestURI, method);
+            log.info("doFilter() END: RESPONSE [{}][{}]", requestURI, method);
         }
     }
 }

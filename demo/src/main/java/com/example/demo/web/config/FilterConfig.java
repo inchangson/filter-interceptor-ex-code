@@ -1,7 +1,6 @@
 package com.example.demo.web.config;
 
 import com.example.demo.web.filter.CsrfFilter;
-import com.example.demo.web.filter.LoggingFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

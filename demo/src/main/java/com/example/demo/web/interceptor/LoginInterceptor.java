@@ -14,16 +14,16 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
         HttpSession session = request.getSession(false);
-        log.info("LoginInterceptor.preHandle() START: [{}]", requestURI);
+        log.info("preHandle() START: [{}]", requestURI);
 
         if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
 
-            log.info("LoginInterceptor.preHandle(): unauthenticated access [{}]", requestURI);
+            log.info("preHandle(): unauthenticated access [{}]", requestURI);
             // 로그인으로 redirect
             response.sendRedirect("/space/login?redirectURL=" + requestURI);
         }
 
-        log.info("LoginInterceptor.preHandle() END: [{}]", requestURI);
+        log.info("preHandle() END: [{}]", requestURI);
         return true;
     }
 }
